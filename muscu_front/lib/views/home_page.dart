@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muscu_front/widget/list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -11,11 +12,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: const Center(
-        child: Text(
-          'Panthéon',
-        ),
-      ),
+      body: EntrainementList(),
     );
   }
 }
