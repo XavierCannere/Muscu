@@ -1,4 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { Repository } from "typeorm";
+import { GroupeMusculaire } from "./groupe_musculaire.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class GroupeMusculaireService {}
+export class GroupeMusculaireService {
+
+  constructor(
+      @InjectRepository(GroupeMusculaireService)
+      private readonly groupe_musculaire_repository: Repository<GroupeMusculaire>,
+    ) {}
+
+  async findAll(): Promise<GroupeMusculaire[]> {
+      return this.groupe_musculaire_repository.find();
+  }
+
+  async findOne(id: number): Promise<GroupeMusculaire> {
+      return this.groupe_musculaire_repository.findOneBy({id});
+  }
+}

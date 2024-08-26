@@ -11,6 +11,8 @@ import { ExerciceService } from './exercice/exercice.service';
 import { GroupeMusculaireService } from './groupe_musculaire/groupe_musculaire.service';
 import { Exercice } from './exercice/exercice.entity';
 import { GroupeMusculaire } from './groupe_musculaire/groupe_musculaire.entity';
+import { ExerciceController } from './exercice/exercice.controller';
+import { GroupeMusculaireController } from './groupe_musculaire/groupe_musculaire.controller';
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import { GroupeMusculaire } from './groupe_musculaire/groupe_musculaire.entity';
     }),
     TypeOrmModule.forFeature([Entrainement, Exercice, GroupeMusculaire]),
   ],
-  controllers: [AppController, EntrainementController],
+  controllers: [AppController, EntrainementController, ExerciceController, GroupeMusculaireController],
   providers: [AppService, EntrainementService, ExerciceService, GroupeMusculaireService],
   exports: [TypeOrmModule],
 })

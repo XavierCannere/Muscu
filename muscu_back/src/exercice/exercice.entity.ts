@@ -1,5 +1,5 @@
 import { GroupeMusculaire } from 'src/groupe_musculaire/groupe_musculaire.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinColumn, OneToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
 
 @Entity()
 export class Exercice {
@@ -10,12 +10,32 @@ export class Exercice {
   @Column()
   nom_exercice: string;
 
-  @ManyToOne(() => GroupeMusculaire, groupe_musculaire => groupe_musculaire.exercices)
-  @JoinColumn({ name: 'groupe_musculaire_principal' })
+  @ManyToMany(() => GroupeMusculaire, groupe_musculaire => groupe_musculaire.exercices)
+  @JoinTable({
+    name: 'exercice_groupe_musculaire_principal', 
+    joinColumn: {
+      name: 'exercice_principal_id', 
+      referencedColumnName: 'id',  
+    },
+    inverseJoinColumn: {
+      name: 'groupe_musculaire_principal_id',  
+      referencedColumnName: 'id',
+    }
+  })
   groupe_musculaire_principal: GroupeMusculaire;
 
   @ManyToMany(() => GroupeMusculaire, groupe_musculaire => groupe_musculaire.exercices_secondaires)
-  @JoinTable({ name: 'exercice_groupe_musculaire_secondaire' })
+  @JoinTable({
+    name: 'exercice_groupe_musculaire_secondaire',  
+    joinColumn: {
+      name: 'exercice_secondaire_id', 
+      referencedColumnName: 'id', 
+    },
+    inverseJoinColumn: {
+      name: 'groupe_musculaire_secondaire_id', 
+      referencedColumnName: 'id',
+    }
+  })
   groupe_musculaire_secondaire: GroupeMusculaire[];
 
 }
