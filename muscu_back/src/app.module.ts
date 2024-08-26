@@ -7,6 +7,10 @@ import { Entrainement } from './entrainement/entrainement.entity';
 //import { Entrainement } from './entrainement/entrainement.entity';
 import { EntrainementService } from './entrainement/entrainement.service';
 import { EntrainementController } from './entrainement/entrainement.controller';
+import { ExerciceService } from './exercice/exercice.service';
+import { GroupeMusculaireService } from './groupe_musculaire/groupe_musculaire.service';
+import { Exercice } from './exercice/exercice.entity';
+import { GroupeMusculaire } from './groupe_musculaire/groupe_musculaire.entity';
 
 @Module({
   imports: [
@@ -17,14 +21,14 @@ import { EntrainementController } from './entrainement/entrainement.controller';
       username: 'xavier', // remplacez par votre utilisateur PostgreSQL
       password: 'cannere', // remplacez par votre mot de passe PostgreSQL
       database: 'muscu', // remplacez par le nom de votre base de données
-      entities: [Entrainement],
+      entities: [Entrainement, Exercice, GroupeMusculaire],
       synchronize: true,
       logging: true,
     }),
-    TypeOrmModule.forFeature([Entrainement]),
+    TypeOrmModule.forFeature([Entrainement, Exercice, GroupeMusculaire]),
   ],
   controllers: [AppController, EntrainementController],
-  providers: [AppService, EntrainementService],
+  providers: [AppService, EntrainementService, ExerciceService, GroupeMusculaireService],
   exports: [TypeOrmModule],
 })
 export class AppModule {}
