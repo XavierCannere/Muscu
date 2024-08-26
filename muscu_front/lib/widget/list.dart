@@ -32,14 +32,15 @@ class _EntrainementListState extends State<EntrainementList> {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(child: Text('Aucun entrainement trouvé.'));
           } else {
-            return ListView.builder(
+            return ListView.separated(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(snapshot.data![index].nom_entrainement),  // Affiche le nom de l'utilisateur
-                  //subtitle: Text(snapshot.data![index].email),
+                  subtitle: Text("Dernière fois il y a 2 jours"),
                 );
-              },
+              }, 
+              separatorBuilder: (BuildContext context, int index) => const Divider(),
             );
           }
         },
