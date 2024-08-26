@@ -32,15 +32,28 @@ class _EntrainementListState extends State<EntrainementList> {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(child: Text('Aucun entrainement trouvé.'));
           } else {
-            return ListView.separated(
+            return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(snapshot.data![index].nom_entrainement),  // Affiche le nom de l'utilisateur
-                  subtitle: Text("Dernière fois il y a 2 jours"),
+                return Container(
+                  margin: const EdgeInsets.all(2.0), // Marge extérieure entre les ListTiles
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black, // Couleur de la bordure
+                      width: 1.0, // Épaisseur de la bordure
+                    ),
+                    borderRadius: BorderRadius.circular(8.0), // Arrondissement des listTiles
+                  ),
+                  child: ListTile(
+                    title: Text(snapshot.data![index].nom_entrainement),  
+                    subtitle: const Text("Dernière fois il y a 2 jours"),
+                    trailing: const Icon(Icons.arrow_forward),
+                    onTap: () {
+                      // Action à effectuer lors du clic
+                    },
+                  ),
                 );
               }, 
-              separatorBuilder: (BuildContext context, int index) => const Divider(),
             );
           }
         },
