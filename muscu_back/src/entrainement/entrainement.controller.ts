@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { EntrainementService } from './entrainement.service';
+import { EntrainementDTO } from './entrainement.dto';
 
 @Controller('entrainement')
 export class EntrainementController {
@@ -14,5 +15,15 @@ export class EntrainementController {
     @Get(':id') 
     async findOne(@Param('id') id: number) {
         return this.entrainement_service.findOne(id);
+    }
+
+    @Post()
+    async create(@Body() entrainementDTO: EntrainementDTO) {
+        return this.entrainement_service.create(entrainementDTO);
+    }
+
+    @Patch(':id')  
+    async update(@Param('id') id: number, @Body() entrainementDTO: EntrainementDTO) {
+        return this.entrainement_service.update(id, entrainementDTO);
     }
 }
