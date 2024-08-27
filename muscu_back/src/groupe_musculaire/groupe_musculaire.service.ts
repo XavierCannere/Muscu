@@ -7,7 +7,7 @@ import { Injectable } from "@nestjs/common";
 export class GroupeMusculaireService {
 
   constructor(
-      @InjectRepository(GroupeMusculaireService)
+      @InjectRepository(GroupeMusculaire)
       private readonly groupe_musculaire_repository: Repository<GroupeMusculaire>,
     ) {}
 

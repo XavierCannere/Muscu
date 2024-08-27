@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:muscu_front/widget/entrainement_list.dart';
+import 'package:muscu_front/widget/exercice_list.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+class ExercicePage extends StatelessWidget {
+  const ExercicePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: EntrainementList(),
+            child: ExerciceList(),
           ),
           Center(
             child: Wrap(
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {
                     // Action à effectuer lorsque le bouton est cliqué
                   },
-                  child: const Text('Ajouter un Entraînement'), // Texte du bouton
+                  child: const Text('Modifier un entrainement'), // Texte du bouton
                 ),
             ],) 
           ),

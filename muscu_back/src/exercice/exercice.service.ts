@@ -7,7 +7,7 @@ import { Exercice } from "./exercice.entity";
 export class ExerciceService {
 
   constructor(
-      @InjectRepository(ExerciceService)
+      @InjectRepository(Exercice)
       private readonly exercice_repository: Repository<Exercice>,
     ) {}
 
