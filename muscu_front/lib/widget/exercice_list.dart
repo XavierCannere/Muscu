@@ -5,6 +5,9 @@ import 'package:muscu_front/entity/entrainement.dart';
 import 'package:muscu_front/entity/exercice.dart';
 
 class ExerciceList extends StatefulWidget {
+  final int id_entrainement;
+  ExerciceList({required this.id_entrainement});
+
   @override
   _ExerciceListState createState() => _ExerciceListState();
 }
@@ -15,9 +18,9 @@ class _ExerciceListState extends State<ExerciceList> {
   @override
   void initState() {
     super.initState();
-    futureExercice = fetchExercice();
+    futureExercice = getExerciceDesEntrainements(widget.id_entrainement);
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

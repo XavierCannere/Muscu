@@ -1,5 +1,6 @@
+import { Entrainement } from 'src/entrainement/entrainement.entity';
 import { GroupeMusculaire } from 'src/groupe_musculaire/groupe_musculaire.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Exercice {
@@ -37,5 +38,8 @@ export class Exercice {
     }
   })
   groupe_musculaire_secondaire: GroupeMusculaire[];
+
+  @ManyToMany(() => Entrainement, entrainement => entrainement.exercices)
+  entrainements: Entrainement[];
 
 }

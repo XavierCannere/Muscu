@@ -3,20 +3,17 @@ import 'package:muscu_front/widget/entrainement_list.dart';
 import 'package:muscu_front/widget/exercice_list.dart';
 
 class ExercicePage extends StatelessWidget {
-  const ExercicePage({Key? key, required this.title}) : super(key: key);
+  const ExercicePage({Key? key, required this.id_entrainement}) : super(key: key);
 
-  final String title;
+  final int id_entrainement;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
       body: Column(
         children: [
           Expanded(
-            child: ExerciceList(),
+            child: ExerciceList(id_entrainement: id_entrainement),
           ),
           Center(
             child: Wrap(

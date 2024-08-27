@@ -15,4 +15,9 @@ export class ExerciceController {
     async findOne(@Param('id') id: number) {
         return this.exercice_service.findOne(id);
     }
+
+    @Get('entrainement/:id_entrainement')
+    async findByEntrainement(@Param('id_entrainement') id_entrainement: number) {
+            return this.exercice_service.findByEntrainement(id_entrainement);
+    }
 }

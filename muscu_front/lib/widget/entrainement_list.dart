@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muscu_front/controllers/entrainement.controller.dart';
 import 'package:muscu_front/entity/entrainement.dart';
+import 'package:muscu_front/views/exercice_page.dart';
 
 class EntrainementList extends StatefulWidget {
   @override
@@ -8,12 +9,13 @@ class EntrainementList extends StatefulWidget {
 }
 
 class _EntrainementListState extends State<EntrainementList> {
-  late Future<List<Entrainement>> futureUsers;
+  late Future<List<Entrainement>> getEntrainements;
+  late Future<List<Entrainement>> getExerciceDesEntrainements;
 
   @override
   void initState() {
     super.initState();
-    futureUsers = fetchEntrainement();
+    getEntrainements = getEntrainement();
   }
 
   @override
@@ -23,7 +25,7 @@ class _EntrainementListState extends State<EntrainementList> {
         title: Text('Liste des entrainements'),
       ),
       body: FutureBuilder<List<Entrainement>>(
-        future: futureUsers,
+        future: getEntrainements,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -49,7 +51,12 @@ class _EntrainementListState extends State<EntrainementList> {
                     subtitle: const Text("Dernière fois il y a 2 jours"),
                     trailing: const Icon(Icons.arrow_forward),
                     onTap: () {
-                      // Action à effectuer lors du clic
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ExercicePage(id_entrainement: snapshot.data![index].id),
+                        ),
+                      );
                     },
                   ),
                 );
